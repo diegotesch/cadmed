@@ -6,9 +6,9 @@ use App\Services\MedicoService;
 use App\Models\Medico;
 use App\Http\Resources\MedicoDTO;
 
-use phpDocumentor\Reflection\Types\Boolean;
 use Illuminate\Database\QueryException;
-use Illuminate\Support\Facades\DB;
+use Validator;
+
 
 class MedicoServiceImpl implements MedicoService
 {
@@ -51,19 +51,44 @@ class MedicoServiceImpl implements MedicoService
 
     private function store(Array $dados)
     {
-        $medico = Medico::create($dados);
-        if (isset($dados['especialidades'])) {
-            $medico->especialidades()->sync($dados['especialidades']);
+        $validator = Validator::make($dados, [
+            'nome' => 'required|min:3',
+            'crm' => 'required|max:9|unique:medicos',
+            'telefone' => 'max:11',
+            'especialidades' => 'required|array|min:2',
+            'especialidades.*' => 'required|integer|distinct'
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            throw new \Exception($errors->all());
         }
+
+        $medico = Medico::create($dados);
+
+        $medico->especialidades()->sync($dados['especialidades']);
+
         return new MedicoDTO($medico);
     }
 
     private function update(Array $dados)
     {
         $medico = Medico::findOrFail($dados['id']);
-        if (isset($dados['especialidades'])){
-            $medico->especialidades()->sync($dados['especialidades']);
+
+        $validator = Validator::make($dados, [
+            'nome' => 'required|min:3',
+            'crm' => 'required|max:9|unique:medicos,id,'.$dados['id'],
+            'telefone' => 'max:11',
+            'especialidades' => 'required|array|min:2',
+            'especialidades.*' => 'required|integer|distinct'
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            throw new \Exception($errors->all());
         }
+
+        $medico->especialidades()->sync($dados['especialidades']);
         $medico->update($dados);
         return new MedicoDTO($medico);
     }
