@@ -16,7 +16,7 @@ Para montar o ambiente é necessário:
 
 Baixe o repositório contendo os arquivos do projeto:
 
-    $ git clone https://github.com/diegotesch/sysfarprojeto.git
+    $ git clone https://github.com/diegotesch/cadmed.git
 
 Acesse o diretorio do projeto e execute os comandos abaixo:
 
