@@ -57,7 +57,7 @@ class MedicoServiceImpl implements MedicoService
             'telefone' => 'max:11',
             'especialidades' => 'required|array|min:2',
             'especialidades.*' => 'required|integer|distinct'
-        ]);
+        ], $this->getErrorMessages());
 
         if ($validator->fails()) {
             $errors = $validator->errors();
@@ -81,7 +81,7 @@ class MedicoServiceImpl implements MedicoService
             'telefone' => 'max:11',
             'especialidades' => 'required|array|min:2',
             'especialidades.*' => 'required|integer|distinct'
-        ]);
+        ], $this->getErrorMessages());
 
         if ($validator->fails()) {
             $errors = $validator->errors();
@@ -91,6 +91,20 @@ class MedicoServiceImpl implements MedicoService
         $medico->especialidades()->sync($dados['especialidades']);
         $medico->update($dados);
         return new MedicoDTO($medico);
+    }
+
+    private function getErrorMessages() {
+        return [
+            'nome.required' => 'Preenchimento do campo nome é obrigatório.',
+            'nome.min' => 'No mínimo três caracteres devem ser fornecidos para o nome.',
+            'crm.required' => 'Preenchimento do campo CRM é obrigatório.',
+            'crm.max' => 'Somente 9 caracteres são permitidos para o campo CRM.',
+            'crm.unique' => 'CRM já cadastrado. Verifique se digitou o número correto e tente novamente.',
+            'telefone.max' => 'Somente 11 caracteres são permitidos para telefone.',
+            'especialidades.required' => 'Preenchimento do campo especialidades é obrigatório.',
+            'especialidades.min' => 'No mínimo duas especialidades devem ser selecionadas.',
+            'especialidades.*.distinct' => 'Selecione especialidades diferentes.'
+        ];
     }
 
 }
