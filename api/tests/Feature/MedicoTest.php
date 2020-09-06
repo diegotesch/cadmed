@@ -59,9 +59,7 @@ class MedicoTest extends TestCase
         $response = $this->post('api/medicos', $medico);
         $response->assertStatus(201)
             ->assertJson([
-                'data' => [
-                    'id' => 1
-                ]
+                'id' => 1
             ]);
 
     }
@@ -74,36 +72,10 @@ class MedicoTest extends TestCase
         $medico = [
             'nome' => 'john Doe',
             'telefone' => '22776615441',
-            'especialidades' => [1, 2]
         ];
         $response = $this->post('api/medicos', $medico);
-        $response->assertStatus(404)
-            ->assertJson([
-                'data' => [
-                    'id' => 1
-                ]
-            ]);
+        $response->assertStatus(500);
     }
-
-    // public function testCadastrarClienteSemNome()
-    // {
-    //     Passport::actingAs(
-    //         factory(User::class)->create()
-    //     );
-    //     $cliente = [
-    //         'nome' => null,
-    //         'email' => 'cliente@teste.com.br',
-    //         'telefone' => null,
-    //         'data_nascimento' => null
-    //     ];
-    //     $response = $this->post('api/cliente', $cliente);
-    //     $response->assertStatus(404)
-    //         ->assertJson([
-    //             'data' => [
-    //                 'nome' => ['The nome field is required.']
-    //             ]
-    //         ]);
-    // }
 
     // ATUALIZAR
     public function testAtualizarMedico()
@@ -123,10 +95,8 @@ class MedicoTest extends TestCase
         $response = $this->put('api/medicos', $update);
         $response->assertStatus(200)
             ->assertJson([
-                'data' => [
-                    'id' => 1,
-                    'nome' => 'john doe'
-                ]
+                'id' => 1,
+                'nome' => 'john doe'
             ]);
 
     }

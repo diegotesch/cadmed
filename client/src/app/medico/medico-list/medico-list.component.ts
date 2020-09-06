@@ -11,7 +11,6 @@ import { Medico } from './../../models/medico';
 import { MedicoService } from './../medico.service';
 import { Especialidade } from './../../models/especialidade';
 
-
 @Component({
   selector: 'app-medico-list',
   templateUrl: './medico-list.component.html',
@@ -31,8 +30,8 @@ export class MedicoListComponent implements OnInit {
   colunas = [
     { field: 'nome', header: 'Nome' },
     { field: 'crm', header: 'CRM' },
-    { field: 'telefone', header: 'Telefone' },
     { field: 'especialidades', header: 'Especialidades' },
+    { field: 'telefone', header: 'Telefone' },
   ]
 
   constructor(

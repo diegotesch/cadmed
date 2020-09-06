@@ -7,7 +7,7 @@
         <div class="p-col-11 p-sm-10 p-md-10 p-lg-11">
           <ng-container *ngIf="medicos$ | async as medicos; else loading">
 
-            <p-table #medicoTable [columns]="colunas" [paginator]="true" [resizableColumns]="true" [responsive]="true" [rows]="10" [showCurrentPageReport]="true" [value]="medicos" selectionMode="single" dataKey="id" (onRowSelect)="rowSelect($event)" (onRowUnselect)="rowUnSelect($event)">
+            <p-table #medicoTable [columns]="colunas" [paginator]="true" [resizableColumns]="true" [responsive]="true" [rows]="5" [showCurrentPageReport]="true" [value]="medicos" selectionMode="single" dataKey="id" (onRowSelect)="rowSelect($event)" (onRowUnselect)="rowUnSelect($event)">
               <ng-template pTemplate="header" let-colunas>
                 <tr>
                   <th *ngFor="let coluna of colunas" [ngSwitch]="coluna.field">

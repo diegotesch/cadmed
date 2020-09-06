@@ -84,7 +84,7 @@ export class MedicoFormComponent extends FormDefaultComponent implements OnInit,
       'id': [null],
       'nome': [null, [Validators.required, Validators.minLength(3)]],
       'crm': [null, [Validators.required, Validators.maxLength(9)]],
-      'telefone': [null, [Validators.minLength(13), Validators.maxLength(17)]],
+      'telefone': [null, [Validators.minLength(10), Validators.maxLength(17)]],
       'especialidades': [null, Validators.required]
     })
   }
