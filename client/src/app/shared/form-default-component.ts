@@ -1,5 +1,6 @@
 import { AbstractControl, FormGroup, ValidatorFn } from '@angular/forms'
 import { EventEmitter, Output } from '@angular/core'
+import {SelectItem} from 'primeng/api';
 
 export abstract class FormDefaultComponent {
   formulario: FormGroup;
@@ -61,6 +62,15 @@ export abstract class FormDefaultComponent {
     this.formEnviado = false;
     this.exibe = false;
     this.iniciarForm();
+  }
+
+  converterDropdown(array: any, label: string, value: string): SelectItem[] {
+    return array.map(item => {
+      return {
+        label: item[label],
+        value: item[value]
+      }
+    })
   }
 
   dataBr = {

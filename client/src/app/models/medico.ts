@@ -6,7 +6,7 @@ export class Medico {
     public nome?: string,
     public crm?: string,
     public telefone?: string,
-    public especialidades?: Especialidade[]
+    public especialidades?: number[]
   ) {
 
   }

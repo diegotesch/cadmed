@@ -9,7 +9,8 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
-import {CalendarModule} from 'primeng/calendar';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { DropdownModule } from 'primeng/dropdown';
 import {InputMaskModule} from 'primeng/inputmask';
 
 import { BlockModule } from './../shared/block/block.module';
@@ -39,8 +40,9 @@ import { PhoneDirective } from './../directives/phone.directive';
     MessagesModule,
     MessageModule,
     BlockModule,
-    CalendarModule,
-    InputMaskModule
+    MultiSelectModule,
+    InputMaskModule,
+    DropdownModule
   ]
 })
 export class MedicoModule { }

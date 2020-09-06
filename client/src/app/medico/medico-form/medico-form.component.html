@@ -1,1 +1,73 @@
-<p>medico-form works!</p>
+<app-block [show]="requisicao"></app-block>
+<div class="p-grid forms-grid card">
+  <div class="p-offset-2 p-col-8">
+    <p-card header="{{titulo}}" subheader="Médicos" styleClass="ui-card-shadow">
+      <form [formGroup]="formulario">
+        <div class="ui-fluid">
+          <div class="p-field ui-fluid">
+            <span class="ui-float-label">
+              <input [(ngModel)]="medico.nome" formControlName="nome" pInputText>
+              <label for="float-input">Nome:</label>
+            </span>
+            <div *ngIf="getError('nome')">
+              <p-message severity="error" text="{{ getErrorMsg('nome') }}"></p-message>
+            </div>
+          </div>
+
+          <div class="p-field ui-fluid">
+            <span class="ui-float-label">
+              <p-multiSelect [options]="especialidades" [(ngModel)]="medico.especialidades" formControlName="especialidades" (onChange)="checarQuantidadeEspecialidadesSelecionadas($event)"></p-multiSelect>
+              <label for="float-input">Especialidades:</label>
+            </span>
+            <div *ngIf="getError('especialidades')">
+              <p-message severity="error" text="{{ getErrorMsg('especialidades') }}"></p-message>
+            </div>
+            <div *ngIf="especialidadesErrors">
+              <p-message severity="error" text="Selecione ao menos duas especialidades"></p-message>
+            </div>
+          </div>
+
+          <div class="p-grid">
+            <div class="p-col-6">
+              <div class="p-field ui-fluid">
+                <span class="ui-float-label">
+                  <p-inputMask [(ngModel)]="medico.crm"  mask='999999/aa' formControlName="crm" (onComplete)="verificarCrm()"></p-inputMask>
+                  <label for="float-input">CRM:</label>
+                </span>
+                <div *ngIf="getError('crm')">
+                  <p-message severity="error" text="{{ getErrorMsg('crm') }}"></p-message>
+                </div>
+              </div>
+            </div>
+            <div class="p-col-6">
+              <div class="p-field ui-fluid">
+                <span class="ui-float-label">
+                  <input pInputText [(ngModel)]="medico.telefone" formControlName="telefone" phone (blur)="checkMascara()"/>
+                  <label for="float-input">Telefone:</label>
+                </span>
+                <div *ngIf="getError('telefone')">
+                  <p-message severity="error" text="{{ getErrorMsg('telefone') }}"></p-message>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <p-footer>
+        <div class="p-grid">
+          <div class="p-col-4 col-sm-12 bt">
+            <div class="p-field ui-fluid">
+              <button pButton type="button" class="ui-button-success" label="Salvar" (click)="salvar()"></button>
+            </div>
+          </div>
+          <div class="p-col-4 col-sm-12 bt">
+            <div class="p-field ui-fluid">
+              <button pButton type="button" class="ui-button-warning" label="Cancelar" (click)="cancelar()"></button>
+            </div>
+          </div>
+        </div>
+      </p-footer>
+    </p-card>
+  </div>
+</div>

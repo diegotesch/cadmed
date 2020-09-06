@@ -54,14 +54,16 @@ class MedicoServiceImpl implements MedicoService
         $validator = Validator::make($dados, [
             'nome' => 'required|min:3',
             'crm' => 'required|max:9|unique:medicos',
-            'telefone' => 'max:11',
+            'telefone' => 'max:17',
             'especialidades' => 'required|array|min:2',
             'especialidades.*' => 'required|integer|distinct'
         ], $this->getErrorMessages());
 
         if ($validator->fails()) {
             $errors = $validator->errors();
-            throw new \Exception($errors->all());
+            foreach ($errors->all() as $error) {
+                throw new \Exception($error);
+            }
         }
 
         $medico = Medico::create($dados);
@@ -78,14 +80,14 @@ class MedicoServiceImpl implements MedicoService
         $validator = Validator::make($dados, [
             'nome' => 'required|min:3',
             'crm' => 'required|max:9|unique:medicos,id,'.$dados['id'],
-            'telefone' => 'max:11',
+            'telefone' => 'max:17',
             'especialidades' => 'required|array|min:2',
             'especialidades.*' => 'required|integer|distinct'
         ], $this->getErrorMessages());
 
-        if ($validator->fails()) {
-            $errors = $validator->errors();
-            throw new \Exception($errors->all());
+        $errors = $validator->errors();
+        foreach ($errors->all() as $error) {
+            throw new \Exception($error);
         }
 
         $medico->especialidades()->sync($dados['especialidades']);
@@ -100,7 +102,7 @@ class MedicoServiceImpl implements MedicoService
             'crm.required' => 'Preenchimento do campo CRM é obrigatório.',
             'crm.max' => 'Somente 9 caracteres são permitidos para o campo CRM.',
             'crm.unique' => 'CRM já cadastrado. Verifique se digitou o número correto e tente novamente.',
-            'telefone.max' => 'Somente 11 caracteres são permitidos para telefone.',
+            'telefone.max' => 'Somente 17 caracteres são permitidos para telefone.',
             'especialidades.required' => 'Preenchimento do campo especialidades é obrigatório.',
             'especialidades.min' => 'No mínimo duas especialidades devem ser selecionadas.',
             'especialidades.*.distinct' => 'Selecione especialidades diferentes.'

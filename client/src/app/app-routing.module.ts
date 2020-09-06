@@ -11,8 +11,8 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'medicos', component: MedicoListComponent, canActivate: [AuthGuardService] },
-  { path: 'medico', component: MedicoFormComponent, canActivate: [AuthGuardService] },
-  { path: 'medico/:id', component: MedicoFormComponent, canActivate: [AuthGuardService] },
+  { path: 'medicos/novo', component: MedicoFormComponent, canActivate: [AuthGuardService] },
+  { path: 'medicos/:id', component: MedicoFormComponent, canActivate: [AuthGuardService] },
 ];
 
 @NgModule({

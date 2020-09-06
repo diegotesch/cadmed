@@ -1,0 +1,15 @@
+.card {
+  margin-top: 2em !important;
+}
+
+@media screen and (max-width: 550px) {
+  .bt {
+    width: 100% !important;
+    display: block !important;
+    margin: 0;
+    padding: 0;
+  }
+  .bt>.p-field {
+    margin: 0 !important;
+  }
+}

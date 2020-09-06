@@ -58,12 +58,12 @@ export class MedicoListComponent implements OnInit {
   }
 
   cadastrar() {
-    this.router.navigate(['medico']);
+    this.router.navigate(['medicos', 'novo']);
   }
 
   editar() {
     if (this.btEditar) {
-      this.router.navigate(['medico', this.selecionado]);
+      this.router.navigate(['medicos', this.selecionado]);
     }
   }
 
