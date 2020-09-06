@@ -52,7 +52,7 @@ class MedicoTest extends TestCase
         );
         $medico = [
             'nome' => 'John Doe',
-            'crm' => '111111/TT',
+            'crm' => '111111/ES',
             'telefone' => '22776615441',
             'especialidades' => [1, 2]
         ];
