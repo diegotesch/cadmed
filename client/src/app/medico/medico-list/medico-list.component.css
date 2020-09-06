@@ -7,3 +7,17 @@
   font-size: 16px;
   font-weight: 600;
 }
+
+ul.especialidades {
+  list-style-type: none;
+}
+
+ul.especialidades li {
+  padding: 6px;
+  margin-bottom: 5px;
+  background: #017ad9;
+  display: inline-block;
+  border-radius: 15px;
+  color: #fff;
+  font-weight: bold;
+}

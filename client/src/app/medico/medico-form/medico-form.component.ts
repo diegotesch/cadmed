@@ -84,7 +84,7 @@ export class MedicoFormComponent extends FormDefaultComponent implements OnInit,
       'id': [null],
       'nome': [null, [Validators.required, Validators.minLength(3)]],
       'crm': [null, [Validators.required, Validators.maxLength(9)]],
-      'telefone': [null, [Validators.minLength(15), Validators.maxLength(17)]],
+      'telefone': [null, [Validators.minLength(13), Validators.maxLength(17)]],
       'especialidades': [null, Validators.required]
     })
   }
@@ -95,7 +95,10 @@ export class MedicoFormComponent extends FormDefaultComponent implements OnInit,
       const medico = Object.assign(new Medico(), this.formulario.value);
       this.medicoService.salvar(medico).pipe(
         finalize(() => this.requisicao = false)
-      ).subscribe(() => this.router.navigate(['medicos']))
+      ).subscribe(() => {
+        this.messageService.add({severity: 'success', summary: 'Sucesso!', detail: 'Médico foi salvo com sucesso!.'});
+        this.router.navigate(['medicos']);
+      });
     }
   }
 
@@ -105,7 +108,7 @@ export class MedicoFormComponent extends FormDefaultComponent implements OnInit,
 
   verificarCrm() {
     const estadoSelecionado = this.formulario.get('crm').value.split('/')[1];
-    if (!this.estados.some(estado => estado == estadoSelecionado)) {
+    if (!this.estados.some(estado => estado == estadoSelecionado.toUpperCase())) {
       this.messageService.add({severity: 'error', summary: 'CRM inválido', detail: 'Verifique se o CRM digitado está correto.'});
     }
   }

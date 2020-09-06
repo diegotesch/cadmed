@@ -16,7 +16,7 @@
 
           <div class="p-field ui-fluid">
             <span class="ui-float-label">
-              <p-multiSelect [options]="especialidades" [(ngModel)]="medico.especialidades" formControlName="especialidades" (onChange)="checarQuantidadeEspecialidadesSelecionadas($event)"></p-multiSelect>
+              <p-multiSelect [options]="especialidades" [(ngModel)]="medico.especialidades" formControlName="especialidades" (onChange)="checarQuantidadeEspecialidadesSelecionadas($event)" defaultLabel="Selecione Especialidades"></p-multiSelect>
               <label for="float-input">Especialidades:</label>
             </span>
             <div *ngIf="getError('especialidades')">
@@ -31,7 +31,7 @@
             <div class="p-col-6">
               <div class="p-field ui-fluid">
                 <span class="ui-float-label">
-                  <p-inputMask [(ngModel)]="medico.crm"  mask='999999/aa' formControlName="crm" (onComplete)="verificarCrm()"></p-inputMask>
+                  <p-inputMask [(ngModel)]="medico.crm"  mask='999999/aa' formControlName="crm" (onComplete)="verificarCrm()" [style]="{'text-transform': 'uppercase'}"></p-inputMask>
                   <label for="float-input">CRM:</label>
                 </span>
                 <div *ngIf="getError('crm')">

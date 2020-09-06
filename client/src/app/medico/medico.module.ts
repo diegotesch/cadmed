@@ -12,6 +12,7 @@ import { MessageModule } from 'primeng/message';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { DropdownModule } from 'primeng/dropdown';
 import {InputMaskModule} from 'primeng/inputmask';
+import {ChipsModule} from 'primeng/chips';
 
 import { BlockModule } from './../shared/block/block.module';
 
@@ -42,7 +43,8 @@ import { PhoneDirective } from './../directives/phone.directive';
     BlockModule,
     MultiSelectModule,
     InputMaskModule,
-    DropdownModule
+    DropdownModule,
+    ChipsModule
   ]
 })
 export class MedicoModule { }

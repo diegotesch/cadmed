@@ -44,7 +44,6 @@ export class AuthInterceptor implements HttpInterceptor {
         tap((evento: HttpEvent<any>) => {
         if (evento instanceof HttpResponse) {
           if(evento.body && evento.status == 200) {
-            console.log(evento.body);
             let {message, title, error, user} = evento.body;
             let severity = error ? 'error' : 'success'
             if (message || title) {
