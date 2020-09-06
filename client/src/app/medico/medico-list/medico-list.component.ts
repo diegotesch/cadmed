@@ -53,6 +53,8 @@ export class MedicoListComponent implements OnInit {
   }
 
   onRefresh() {
+    this.btDeletar = false;
+    this.btEditar = false;
     this.listarMedicos();
   }
 
@@ -88,10 +90,6 @@ export class MedicoListComponent implements OnInit {
         this.onRefresh();
       });
     }
-  }
-
-  filtrar() {
-
   }
 
 }
