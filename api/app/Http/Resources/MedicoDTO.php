@@ -14,7 +14,7 @@ class MedicoDTO extends JsonResource
             'nome' => $this->nome,
             'crm' => $this->crm,
             'telefone' => $this->telefone,
-            'especialidades' => $this->especialidades
+            'especialidades' => EspecialidadeDTO::collection($this->especialidades)
         ];
     }
 }

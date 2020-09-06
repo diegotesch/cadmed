@@ -1,0 +1,43 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+  margin: 0 !important;
+}
+
+.p-field {
+  margin-top: 1.5em !important
+}
+
+.ui-progress-spinner {
+  top: 40%;
+  left: 45%;
+}
+
+@keyframes ui-progress-spinner-color {
+  100%,
+  0% {
+    stroke: #000;
+  }
+  25% {
+    stroke: #333;
+  }
+  50% {
+    stroke: #666;
+  }
+  75% {
+    stroke: #333;
+  }
+}
+
+.actionButton {
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 25px !important;
+  box-shadow: 2px 3px 0px 0px rgba(0, 0, 0, 0.27) !important;
+  margin-bottom: 10px !important;
+  display: block !important;
+}
+
+.esmaecer {
+  opacity: 0.6 !important;
+}

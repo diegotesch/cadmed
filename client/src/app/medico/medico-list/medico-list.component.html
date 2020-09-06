@@ -1,0 +1,97 @@
+<app-block [show]="requisicao"></app-block>
+<div class="p-grid forms-grid lista">
+  <div class="p-offset-1 p-col-10">
+    <p-card header="Lista de médicos cadastrados" subheader="Médicos" styleClass="ui-card-shadow">
+
+      <div class="p-grid">
+        <div class="p-col-12">
+          <form novalidate>
+            <!-- <div class="p-grid">
+              <div class="p-col2">
+                <div class="p-field ui-fluid">
+                  <span class="ui-float-label">
+                    <input [(ngModel)]="filtro.nome" [ngModelOptions]="{standalone: true}" pInputText>
+                    <label for="float-input">Nome:</label>
+                  </span>
+                </div>
+              </div>
+              <div class="p-col2" style="margin-left: 1em;">
+                <div class="p-field ui-fluid">
+                  <span class="ui-float-label">
+                    <p-calendar  [showButtonBar]="true" [yearNavigator]="true" yearRange="1960:2080" [locale]="dataBr"
+                    [readonlyInput]="true" [(ngModel)]="filtro.nascimento"  [ngModelOptions]="{standalone: true}" [showIcon]="true"
+                     dateFormat="dd/mm/yy">
+                    </p-calendar>
+                    <label for="float-input">Data de Aniversário:</label>
+                  </span>
+                </div>
+              </div>
+              <div class="p-col2" style="margin-left: 1em;">
+                <div class="p-field ui-fluid">
+                  <button pButton type="button" label="Pesquisar" (click)="filtrar()"></button>
+                </div>
+              </div>
+            </div> -->
+          </form>
+        </div>
+      </div>
+
+      <div class="p-grid">
+        <div class="p-col-11 p-sm-10 p-md-10 p-lg-11">
+          <ng-container *ngIf="medicos$ | async as medicos; else loading">
+
+            <p-table [paginator]="true" [resizableColumns]="true" [responsive]="true" [rows]="10" [showCurrentPageReport]="true" [value]="medicos" selectionMode="single" dataKey="id" (onRowSelect)="rowSelect($event)" (onRowUnselect)="rowUnSelect($event)">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>Nome</th>
+                  <th>Email</th>
+                  <th class="ui-p-4">Especialidades</th>
+                  <th class="ui-p-3">Telefone</th>
+                </tr>
+              </ng-template>
+
+              <ng-template pTemplate="body" let-medico>
+                <tr [pSelectableRow]="medico">
+                  <td>{{medico.nome}}</td>
+                  <td>{{medico.crm}}</td>
+                  <td class="ui-p-4">
+                    <ul>
+                      <li *ngFor="let especialidade of medico.especialidades">
+                        {{ especialidade.descricao | uppercase }}
+                      </li>
+                    </ul>
+                  </td>
+                  <td class="ui-p-3">{{medico.telefone | phone}}</td>
+                </tr>
+              </ng-template>
+
+              <ng-template pTemplate="emptymessage">
+                <tr>
+                  <td class="vazia" [attr.colspan]="4">
+                    Nenhum Registro cadastrado.
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </ng-container>
+
+          <ng-template #loading>
+            <div class="ui-g-12 loading">
+              <div class="ui-g-2 ui-g-offset-5">
+                <p><i class="pi pi-spin pi-spinner" style="font-size: 3em"></i></p>
+                <p>Carregando Médicos...</p>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+        <div class="p-col-1 p-sm-2 p-md-2 p-lg-1">
+          <button pButton type="button" icon="pi pi-plus" class="ui-button-success ui-button-raised ui-button-rounded actionButton" (click)="cadastrar()" pTooltip="Cadastrar Médico" tooltipPosition="top"></button>
+          <!-- <button pButton type="button" icon="pi pi-eye" class="ui-button-info ui-button-raised ui-button-rounded actionButton" [ngClass]="{'esmaecer' : !btVisualizar}" (click)="visualizar()" pTooltip="Visualizar Cliente Selecionado" tooltipPosition="top"></button> -->
+          <button pButton type="button" icon="pi pi-pencil" class="ui-button-warning ui-button-raised ui-button-rounded actionButton" [ngClass]="{'esmaecer' : !btEditar}" (click)="editar()" pTooltip="Editar Médico Selecionado" tooltipPosition="top"></button>
+        </div>
+      </div>
+
+
+    </p-card>
+  </div>
+</div>

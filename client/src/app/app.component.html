@@ -1,0 +1,15 @@
+<p-toast></p-toast>
+
+<div class="p-grid p-nogutter topo">
+  <div class="p-col-2 sigla">
+    <h1>CADMED</h1>
+  </div>
+  <div class="p-col titulo">
+    <h2>Gerenciador de Médicos e Especialidades</h2>
+  </div>
+  <div class="p-col-fixed logout" *ngIf="exibirLogout">
+    <button pButton type="button" class="ui-button-warning " icon="pi pi-sign-out" pTooltip="Sair" (click)="sair()" tooltipPosition="left"></button>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

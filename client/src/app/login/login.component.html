@@ -1,0 +1,36 @@
+<app-block [show]="requisicao"></app-block>
+<div class="p-grid forms-grid login">
+  <div class="p-offset-2 p-col-8">
+    <p-card header="Área de Membros" subheader="LOGIN" styleClass="ui-card-shadow">
+      <form [formGroup]="formulario">
+        <div class="ui-fluid">
+          <div class="p-field ui-fluid">
+            <span class="ui-float-label">
+              <input [(ngModel)]="credenciais.email" formControlName="email" type="email" pInputText>
+              <label for="float-input">E-mail:</label>
+            </span>
+            <div *ngIf="getError('email')">
+              <p-message severity="error" text="{{ getErrorMsg('email') }}"></p-message>
+            </div>
+          </div>
+
+          <div class="p-field ui-fluid">
+            <span class="ui-float-label">
+              <input [(ngModel)]="credenciais.password" formControlName="password" type="password" pInputText />
+              <label for="float-input">Senha:</label>
+            </span>
+            <div *ngIf="getError('password')">
+              <p-message severity="error" text="{{ getErrorMsg('password') }}"></p-message>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <p-footer>
+        <div class="ui-fluid">
+          <button pButton type="button" label="Entrar" (click)="login()"></button>
+        </div>
+      </p-footer>
+    </p-card>
+  </div>
+</div>
